@@ -11,8 +11,12 @@
     "eb-linux": "electron-builder -l",
     "eb-windows": "electron-builder -w"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://mvdicarlo@github.com/mvdicarlo/furaffinity-export.git"
+  },
+  "author": "Michael DiCarlo",
+  "license": "BSD-3-Clause",
   "build": {
     "appId": "com.lemonynade.furaffinityexport",
     "productName": "FurAffinity Export",
