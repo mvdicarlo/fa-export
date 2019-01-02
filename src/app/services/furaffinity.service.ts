@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable, timer } from 'rxjs';
+import { retry } from 'rxjs/operators';
 
 export interface SubmissionPage {
   id: string;
@@ -36,6 +37,7 @@ export class FuraffinityService {
   public checkLogin(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this.http.get(`${this.URL}`, { responseType: 'text' })
+        .pipe(retry(3))
         .subscribe(res => {
           res.includes('Log in') ? reject() : resolve();
         }, err => {
@@ -63,6 +65,7 @@ export class FuraffinityService {
       timer(4000).subscribe(() => {
 
         this.http.get(submission.url, { responseType: 'text' })
+          .pipe(retry(3))
           .subscribe((res => {
             const data: any = {};
             const html$ = $.parseHTML(res);
@@ -73,6 +76,7 @@ export class FuraffinityService {
             timer(3000).subscribe(() => {
 
               this.http.get(`${this.URL}/controls/submissions/changeinfo/${submission.id}`, { responseType: 'text' })
+                .pipe(retry(3))
                 .subscribe(info => {
                   const html$ = $.parseHTML(info);
                   data.description = $(html$).find('[name="message"]').text();
@@ -121,6 +125,7 @@ export class FuraffinityService {
       timer(2000).subscribe(() => {
 
         this.http.get(`${this.URL}/controls/submissions/${page}`, { responseType: 'text' })
+          .pipe(retry(3))
           .subscribe(res => {
             try {
               const items: SubmissionPage[] = [];
