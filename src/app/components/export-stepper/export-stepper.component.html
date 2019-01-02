@@ -1,0 +1,50 @@
+<div>
+  <div name="actions">
+    <button mat-raised-button color="accent" (click)="startExport()" [disabled]="loading || data.length > 0">Begin Export</button>
+    <button class="ml-2" mat-raised-button color="warn" (click)="restart()">Restart</button>
+  </div>
+
+  <div name="loading_indicator" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="data.length" class="mt-3">
+    <div>
+      <button mat-raised-button color="accent" (click)="unselectAll()" [disabled]="generating">Unselect All</button>
+      <button mat-raised-button color="accent" class="ml-2" (click)="generateExport()" [disabled]="generating || getSubmissionsToExport().length === 0">Generate Export</button>
+    </div>
+    <div class="text-info">
+      Total Submissions: {{ data.length }}
+      <br>
+      Submission Export Count: {{ getSubmissionsToExport().length }}
+      <br>
+      Estimated Export Time: {{ getEstimatedExportTime() }} Minutes (don't want to flood the servers)
+    </div>
+    <div *ngIf="generated" class="my-3">
+      <mat-progress-bar mode="determinate" [value]="percentDone"></mat-progress-bar>
+      <div>{{ percentDone }}%</div>
+    </div>
+  </div>
+
+  <div *ngIf="json">
+    <div class="form-group">
+      <label>Export String</label>
+      <textarea #ta readonly rows="3" class="w-100 form-control" (click)="ta.select()">{{ json }}</textarea>
+      <button mat-flat-button color="primary" (click)="saveExportString()">Save Export String</button>
+    </div>
+  </div>
+
+  <div name="submissions" class="row no-gutters">
+    <div class="selectable-item" *ngFor="let item of data" [class.border-red]="item.skip">
+      <div class="img-container">
+        <img [src]="item.imgUrl" [alt]="item.title">
+      </div>
+      <div name="infos">
+        {{ item.title }}
+        <br>
+        <mat-checkbox [disabled]="generating" [checked]="!item.skip" (change)="item.skip = !$event.checked" matTooltip="Unchecking this will remove the submission from the export"></mat-checkbox>
+      </div>
+    </div>
+  </div>
+
+</div>

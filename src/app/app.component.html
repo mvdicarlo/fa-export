@@ -1,0 +1,24 @@
+<div name="main">
+  <mat-toolbar color="primary">
+    <span>Fur Affinity Export</span>
+    <span>
+      <button mat-button (click)="openLoginDialog()"><mat-icon>account_circle</mat-icon> Login To Fur Affinity</button>
+    </span>
+  </mat-toolbar>
+  <div class="container mt-3 text-white" name="export_section">
+
+    <div *ngIf="checkingLogin">
+      <mat-spinner></mat-spinner>
+      <p class="text-info">Checking login...</p>
+    </div>
+
+    <div *ngIf="!checkingLogin && !loggedIn">
+      <p class="text-warning">Please login to your Fur Affinity account.</p>
+    </div>
+
+    <div *ngIf="loggedIn">
+      <export-stepper></export-stepper>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #333 !important;
+}
+
+/*Scrollbar Styling*/
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #777;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #eee;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(to left, #22ADD4, #1E98BA);
+}

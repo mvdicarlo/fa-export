@@ -1,0 +1,36 @@
+mat-spinner {
+  margin: auto;
+}
+
+.selectable-item {
+  margin: 0.25em;
+  border-radius: 4px;
+  background-color: #151515;
+  text-align: center;
+}
+
+.selectable-item .img-container {
+  height: 200px;
+}
+
+.selectable-item img {
+  width: auto;
+  max-width: 33vw;
+  max-height: 200px;
+  opacity: 0.9;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.selectable-item:hover {
+  border: 1px solid #039be5;
+  background-color: #444;
+}
+
+.selectable-item:hover img {
+  opacity: 1;
+}
+
+.border-red {
+  border: 1px solid #e7102a !important;
+}

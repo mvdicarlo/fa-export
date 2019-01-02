@@ -1,0 +1,81 @@
+{
+  "name": "furaffinity-export",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron index.js",
+    "clean": "rm -rf electron-dist/",
+    "eb-unix": "electron-builder -m",
+    "eb-linux": "electron-builder -l",
+    "eb-windows": "electron-builder -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "build": {
+    "appId": "com.lemonynade.furaffinityexport",
+    "productName": "FurAffinity Export",
+    "publish": {
+      "provider": "github",
+      "owner": "mvdicarlo",
+      "repo": "furaffinity-export"
+    },
+    "directories": {
+      "buildResources": "build",
+      "output": "electron-dist"
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "zip",
+        "dmg"
+      ]
+    },
+    "linux": {
+      "artifactName": "${productName}-${version}.${ext}",
+      "category": "Network",
+      "target": [
+        "AppImage",
+        "snap"
+      ]
+    },
+    "win": {
+      "target": [{
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "electron": "^3.0.13",
+    "electron-builder": "~20.34.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0"
+  },
+  "dependencies": {
+    "electron-window-state": "^5.0.3"
+  }
+}
