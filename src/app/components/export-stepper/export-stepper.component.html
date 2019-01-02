@@ -6,6 +6,7 @@
 
   <div name="loading_indicator" *ngIf="loading">
     <mat-spinner></mat-spinner>
+    <p class="text-info">This may take a while depending on gallery size</p>
   </div>
 
   <div *ngIf="data.length" class="mt-3">
@@ -16,9 +17,9 @@
     <div class="text-info">
       Total Submissions: {{ data.length }}
       <br>
-      Submission Export Count: {{ getSubmissionsToExport().length }}
+      Selected Submissions: {{ getSubmissionsToExport().length }}
       <br>
-      Estimated Export Time: {{ getEstimatedExportTime() }} Minutes (don't want to flood the servers)
+      Estimated Export Time: ~{{ getEstimatedExportTime() }} Minutes
     </div>
     <div *ngIf="generated" class="my-3">
       <mat-progress-bar mode="determinate" [value]="percentDone"></mat-progress-bar>

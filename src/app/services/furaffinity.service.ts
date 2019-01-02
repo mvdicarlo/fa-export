@@ -73,6 +73,12 @@ export class FuraffinityService {
             data.imageURL = `https:${img$.attr('data-fullview-src')}`;
             data.title = submission.title;
 
+            if (!img$.attr('data-fullview-src')) {
+              alert(`Unable to retrieve source for submission "${data.title}". Turn off SFW mode if it is enabled and restart the export.`);
+              resolve();
+              return;
+            }
+
             timer(3000).subscribe(() => {
 
               this.http.get(`${this.URL}/controls/submissions/changeinfo/${submission.id}`, { responseType: 'text' })

@@ -62,7 +62,7 @@ export class ExportStepperComponent implements OnDestroy {
   }
 
   public getEstimatedExportTime(): number {
-    return this.getSubmissionsToExport().length * 7; // right now it takes 7+ seconds per due to arbitrary throttling
+    return Math.ceil(Number(((this.getSubmissionsToExport().length * 7) / 60).toFixed(2))); // right now it takes 7+ seconds per due to arbitrary throttling
   }
 
   public unselectAll(): void {
